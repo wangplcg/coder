@@ -19,7 +19,8 @@ import java.util.Map;
 
 public class WsInfoService extends BaseJunit4Test {
 
-    @Autowired //自动注入
+    //自动注入
+    @Autowired
     IWsInfoService wsInfoService;
 
     @Test
