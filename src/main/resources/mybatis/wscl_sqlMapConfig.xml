@@ -12,12 +12,7 @@
         <setting name="useGeneratedKeys" value="false" />
     </settings>
 
-    <!--别名配置-->
-    <typeAliases>
-        <typeAlias alias="WSCL" type="cn.com.sun.mapper.wscl"/>
-    </typeAliases>
-
     <mappers>
-        <mapper resource="mybatis/mapper/*/*.xml"/>
+        <mapper resource="mybatis/mapper/*.xml"/>
     </mappers>
 </configuration>
