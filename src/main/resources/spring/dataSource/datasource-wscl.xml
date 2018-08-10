@@ -39,7 +39,7 @@
         <!-- 自动扫描mapping.xml文件 -->
         <property name="mapperLocations">
             <array>
-                <value>classpath*:mybatis/mapper/**/wscl/*.xml</value>
+                <value>classpath*:mybatis/mapper/wscl/*.xml</value>
             </array>
         </property>
         <property name="configLocation" value="classpath:mybatis/wscl_sqlMapConfig.xml"></property>
@@ -47,7 +47,7 @@
 
     <!-- 接口所在包名，Spring会自动查找其下的类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="gov.etax.dzswj.wszx.dao.fws" />
-        <property name="sqlSessionFactoryBeanName" value="fwskSqlSessionFactory"></property>
+        <property name="basePackage" value="cn.com.sun.mapper.wscl" />
+        <property name="sqlSessionFactoryBeanName" value="wsclSqlSessionFactory"></property>
     </bean>
 </beans>

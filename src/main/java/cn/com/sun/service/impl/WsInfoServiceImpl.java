@@ -1,10 +1,12 @@
-package service.impl;
+package cn.com.sun.service.impl;
 
-import mapper.wscl.IWsInfoMapper;
+import cn.com.sun.commons.dto.WssqxxDto;
+import cn.com.sun.mapper.wscl.IWsInfoMapper;
+import cn.com.sun.service.IWsInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import service.IWsInfoService;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,7 +22,11 @@ public class WsInfoServiceImpl implements IWsInfoService {
     @Autowired
     IWsInfoMapper wsInfoMapper;
 
-    public Map<String, String> getWsInfo(String sqxh) {
+    public List<Map<String, String>> getWsInfo(String sqxh) {
         return wsInfoMapper.getWssqBySqxh(sqxh);
+    }
+
+    public int addtWsInfo(WssqxxDto wssqxxDto) {
+        return wsInfoMapper.insertWssqInfo(wssqxxDto);
     }
 }

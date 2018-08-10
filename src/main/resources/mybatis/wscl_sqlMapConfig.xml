@@ -11,8 +11,4 @@
         <setting name="useColumnLabel" value="true" />
         <setting name="useGeneratedKeys" value="false" />
     </settings>
-
-    <mappers>
-        <mapper resource="mybatis/mapper/*.xml"/>
-    </mappers>
 </configuration>
