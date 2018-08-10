@@ -1,0 +1,4 @@
+target/*
+springtest.iml
+.gitignore
+.idea/
