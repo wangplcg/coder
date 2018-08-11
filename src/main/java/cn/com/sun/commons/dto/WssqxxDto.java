@@ -1,7 +1,6 @@
 package cn.com.sun.commons.dto;
 
 import lombok.Data;
-import oracle.sql.DATE;
 
 import java.util.Date;
 
@@ -15,6 +14,9 @@ import java.util.Date;
 @Data
 public class WssqxxDto {
 
+    /**
+     *
+     */
     private String sqxh;
 
     /**

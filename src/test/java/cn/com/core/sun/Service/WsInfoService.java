@@ -24,16 +24,16 @@ import java.util.Map;
 
 public class WsInfoService extends BaseJunit4Test {
 
+    Logger log = LoggerFactory.getLogger(WsInfoService.class);
+
     //自动注入
     @Autowired
     private IWsInfoService wsInfoService;
 
-    Logger log = LoggerFactory.getLogger(WsInfoService.class);
-
     @Test
     @Transactional   //标明此方法需使用事务
     @Rollback(true)  //标明使用完此方法后事务不回滚,true时为回滚
-    public void queryWsInfoBySqxh(){
+    public void queryWsInfoBySqxh() {
         String sqxh = "7ef32817fc05494fa98071c928120de8";
         log.debug("测试Spring整合Junit4进行单元测试");
         List<Map<String, String>> list = wsInfoService.getWsInfo(sqxh);

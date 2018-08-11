@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="cn.com.sun.mapper.wscl.IWsInfoMapper">
 
     <select id="getWssqBySqxh" parameterType="String" resultType="HashMap">
@@ -9,19 +9,11 @@
     </select>
 
     <insert id="insertWssqInfo" parameterType="cn.com.sun.commons.dto.WssqxxDto">
-        insert into ws_sqqk(SQXH, SLLSH, JYLSH, ACCOUNTID, DJXH, NSRSBH, SWJG_DM, SWSX_DM, SXSHFS_DM, BLZT_DM, LRSJ)
-        values (
-            #{sqxh, jdbcType=VARCHAR},
-            #{sllsh, jdbcType=NUMERIC},
-            #{jylsh, jdbcType=VARCHAR},
-            #{accountId, jdbcType=VARCHAR},
-            #{djxh, jdbcType=VARCHAR},
-            #{nsrsbh, jdbcType=VARCHAR},
-            #{swjgDm, jdbcType=VARCHAR},
-            #{swsxDm, jdbcType=VARCHAR},
-            #{sxshfsDm, jdbcType=VARCHAR},
-            #{blztDm, jdbcType=VARCHAR},
-            sysdate
+        INSERT INTO WS_SQQK(SQXH, SLLSH, JYLSH, ACCOUNTID, DJXH, NSRSBH, SWJG_DM, SWSX_DM, SXSHFS_DM, BLZT_DM, LRSJ)
+        VALUES (
+            #{sqxh, jdbcType=VARCHAR}, #{sllsh, jdbcType=NUMERIC}, #{jylsh, jdbcType=VARCHAR}, #{accountId, jdbcType=VARCHAR},
+            #{djxh, jdbcType=VARCHAR}, #{nsrsbh, jdbcType=VARCHAR}, #{swjgDm, jdbcType=VARCHAR}, #{swsxDm, jdbcType=VARCHAR},
+            #{sxshfsDm, jdbcType=VARCHAR}, #{blztDm, jdbcType=VARCHAR}, sysdate
         )
     </insert>
 </mapper>
