@@ -3,3 +3,4 @@ springtest.iml
 .gitignore
 .idea/*
 spring-test.iml
+out/*

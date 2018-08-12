@@ -4,11 +4,13 @@
     <groupId>cn.com</groupId>
     <artifactId>spring-test</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
 
     <!--配置文件-->
     <properties>
         <!-- 开源组件版本 -->
         <spring.version>4.2.6.RELEASE</spring.version>
+        <spring.test.version>3.2.4.RELEASE</spring.test.version>
         <jackson.version>2.8.5</jackson.version>
         <mybatis.version>3.2.8</mybatis.version>
         <mybatis-spring.version>1.1.0</mybatis-spring.version>
@@ -16,6 +18,7 @@
         <slf4j.version>1.7.13</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
         <druid.version>1.0.11</druid.version>
+        <hessian-version>4.0.51</hessian-version>
         <poi.version>3.14</poi.version>
         <commons-io.version>2.3</commons-io.version>
         <commons-fileupload.version>1.2.1</commons-fileupload.version>
@@ -119,7 +122,7 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-test</artifactId>
-                <version>${spring.version}</version>
+                <version>${spring.test.version}</version>
                 <scope>test</scope>
             </dependency>
             <!-- spring end -->
@@ -170,8 +173,14 @@
                 <artifactId>druid</artifactId>
                 <version>${druid.version}</version>
             </dependency>
-        </dependencies>
         <!-- spring end -->
+
+            <dependency>
+                <groupId>com.caucho</groupId>
+                <artifactId>hessian</artifactId>
+                <version>${hessian-version}</version>
+            </dependency>
+        </dependencies>
     </dependencyManagement>
 
 
@@ -251,8 +260,6 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
-            <version>3.2.4.RELEASE</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>pl.pragmatists</groupId>
@@ -278,10 +285,10 @@
         </dependency>
         <!-- fastJson end-->
 
+        <!--hessian-->
         <dependency>
-            <groupId>hessian</groupId>
+            <groupId>com.caucho</groupId>
             <artifactId>hessian</artifactId>
-            <version>3.0.1</version>
         </dependency>
 
         <!--mybatis 引入-->
@@ -314,6 +321,14 @@
             <version>11.2.0.3</version>
         </dependency>
 
+        <!--mysql 驱动依赖-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.12</version>
+        </dependency>
+
+        <!-- lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -321,11 +336,44 @@
             <scope>provided</scope>
         </dependency>
 
-        <!--mysql-->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.12</version>
-        </dependency>
     </dependencies>
+
+    <!-- 导出源码jar包 -->
+    <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+        <plugins>
+            <!-- 将现有class目录打jar包形式发布lib目录下 并且资源文件不进行拷贝 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven-war-version}</version>
+                <configuration>
+                    <archiveClasses>true</archiveClasses>
+                    <webResources>
+                        <!--<resource>-->
+                            <!--<directory>src\main\resource</directory>-->
+                            <!--<targetPath>WEB-INF\classes</targetPath>-->
+                            <!--<includes>-->
+                                <!--<include>**</include>-->
+                            <!--</includes>-->
+                        <!--</resource>-->
+                    </webResources>
+                </configuration>
+            </plugin>
+
+            <!-- 打包时间参数的使用 -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                </executions>
+                <configuration>
+                    <name>current.time</name>
+                    <pattern>${maven.build.timestamp.format}</pattern>
+                    <timeZone>GMT+8</timeZone>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
