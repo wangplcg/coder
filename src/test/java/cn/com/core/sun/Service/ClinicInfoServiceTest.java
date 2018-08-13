@@ -24,10 +24,8 @@ public class ClinicInfoServiceTest extends BaseJunit4Test {
 
     Logger log = LoggerFactory.getLogger(ClinicInfoServiceTest.class);
 
-
     @Test
     public void testQueryInfoById() {
-
         log.debug("测试");
         ManagerPerson managerPerson = clinicService.queryInfoById("610321199612131814");
         Assert.assertEquals(managerPerson.getIdNumber(), "610321199612131814");

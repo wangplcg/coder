@@ -16,12 +16,12 @@ public class ClinicInfoHessianTest {
     @Test
     public void testCallHessian() {
         try {
-            String url = "http://127.0.0.1:8080/spring-test/hessian";
+            String url = "http://localhost:8080/remote/basicHessianService";
             HessianProxyFactory factory = new HessianProxyFactory();
             factory.setOverloadEnabled(true);
             IClinicInfoService basic = (IClinicInfoService) factory.create(IClinicInfoService.class, url);
             System.out.println(basic.queryInfoById("610321199612131814"));
-        }catch (Exception e){
+        }catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -15,7 +15,9 @@
         </property>
     </bean>
 
-    <context:component-scan base-package="cn.com.sun" />
+    <context:component-scan base-package="cn.com.sun">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
 
     <import resource="classpath*:spring/dataSource/**/*.xml"/>
 </beans>

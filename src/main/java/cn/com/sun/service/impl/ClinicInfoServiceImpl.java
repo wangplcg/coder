@@ -3,7 +3,9 @@ package cn.com.sun.service.impl;
 import cn.com.sun.commons.dto.ManagerPerson;
 import cn.com.sun.mapper.clinic.IManagerPersonMapper;
 import cn.com.sun.service.IClinicInfoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,7 +15,7 @@ import org.springframework.stereotype.Service;
  * Date: 2018-08-11
  * Time: 23:45
  */
-@Service
+@Service("clinicInfoService")
 public class ClinicInfoServiceImpl implements IClinicInfoService {
 
     @Autowired
