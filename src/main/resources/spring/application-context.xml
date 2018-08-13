@@ -11,10 +11,12 @@
     <!-- 文件配置加载 -->
     <bean id="propertyConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location">
-            <value>classpath*:properties/datasource.properties</value>
+            <value>classpath:properties/datasource.properties</value>
+        </property>
+        <property name="fileEncoding">
+            <value>UTF-8</value>
         </property>
     </bean>
-
     <context:component-scan base-package="cn.com.sun">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
