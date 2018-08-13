@@ -11,7 +11,7 @@
     <!-- 文件配置加载 -->
     <bean id="propertyConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location">
-            <value>classpath:properties/datasource.properties</value>
+            <value>classpath*:properties/datasource.properties</value>
         </property>
     </bean>
 
