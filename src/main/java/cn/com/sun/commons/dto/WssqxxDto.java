@@ -2,6 +2,7 @@ package cn.com.sun.commons.dto;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Date;
  */
 
 @Data
-public class WssqxxDto {
+public class WssqxxDto implements Serializable {
 
     /**
      *
