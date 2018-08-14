@@ -174,4 +174,9 @@ public class ManagerPerson implements Serializable {
      * @mbggenerated
      */
     private Date alterTime;
+    private String id;
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }

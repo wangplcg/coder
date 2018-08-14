@@ -37,6 +37,16 @@
         <url-pattern>/hessian</url-pattern>
     </servlet-mapping>
 
+    <!-- hessian序列化测试配置-->
+    <servlet>
+        <servlet-name>HessianSerialTestServlet</servlet-name>
+        <servlet-class>cn.com.sun.servlet.PostDataServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HessianSerialTestServlet</servlet-name>
+        <url-pattern>/hessianSerial</url-pattern>
+    </servlet-mapping>
+
     <!-- SpringMVC -->
     <servlet>
         <servlet-name>SpringMVC</servlet-name>

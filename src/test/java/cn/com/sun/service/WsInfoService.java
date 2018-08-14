@@ -1,8 +1,6 @@
-package cn.com.core.sun.Service;
+package cn.com.sun.service;
 
-import cn.com.core.BaseJunit4Test;
 import cn.com.sun.commons.dto.WssqxxDto;
-import cn.com.sun.service.IWsInfoService;
 import junit.framework.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -22,7 +20,7 @@ import java.util.Map;
  * Time: 23:18
  */
 
-public class WsInfoService extends BaseJunit4Test {
+public class WsInfoService {
 
     Logger log = LoggerFactory.getLogger(WsInfoService.class);
 

@@ -1,8 +1,6 @@
-package cn.com.core.sun.Service;
+package cn.com.sun.service;
 
-import cn.com.core.BaseJunit4Test;
 import cn.com.sun.commons.dto.ManagerPerson;
-import cn.com.sun.service.IClinicInfoService;
 import junit.framework.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -17,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Time: 23:47
  */
 
-public class ClinicInfoServiceTest extends BaseJunit4Test {
+public class ClinicInfoServiceTest {
 
     @Autowired
     IClinicInfoService clinicService;

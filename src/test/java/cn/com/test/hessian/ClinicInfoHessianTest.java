@@ -1,4 +1,4 @@
-package cn.com.core.hessian;
+package cn.com.test.hessian;
 
 import cn.com.sun.commons.dto.ManagerPerson;
 import cn.com.sun.service.IClinicInfoService;
