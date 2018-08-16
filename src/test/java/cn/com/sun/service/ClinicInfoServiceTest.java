@@ -1,7 +1,9 @@
 package cn.com.sun.service;
 
+import cn.com.BaseJunit4Test;
 import cn.com.sun.commons.dto.ManagerPerson;
 import junit.framework.Assert;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Time: 23:47
  */
 
-public class ClinicInfoServiceTest {
+public class ClinicInfoServiceTest extends BaseJunit4Test{
 
     @Autowired
     IClinicInfoService clinicService;
@@ -27,6 +29,6 @@ public class ClinicInfoServiceTest {
         log.debug("测试");
         ManagerPerson managerPerson = clinicService.queryInfoById("610321199612131814");
         Assert.assertEquals(managerPerson.getIdNumber(), "610321199612131814");
-        log.debug("测试{}",managerPerson);
+        log.debug("测试{}", managerPerson);
     }
 }

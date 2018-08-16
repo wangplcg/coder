@@ -27,7 +27,9 @@
         <property name="logAbandoned" value="true" />
     </bean>
 
-    <!-- 事务管理 -->
+    <!-- 事务管理
+        qualifier 后面时候事物使用 wsclTransactionManager @Transication(value="wsclTransactionManager")
+     -->
     <bean id="wsclTransactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="wsclDataSource" />
