@@ -170,7 +170,16 @@
                 <artifactId>logback-classic</artifactId>
                 <version>${logbac.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.logback-extensions</groupId>
+                <artifactId>logback-ext-spring</artifactId>
+                <version>0.1.5</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jcl-over-slf4j</artifactId>
+                <version>1.7.9</version>
+            </dependency>
             <!--fastJson-->
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -328,15 +337,22 @@
             <!--<groupId>log4j</groupId>-->
             <!--<artifactId>log4j</artifactId>-->
         <!--</dependency>-->
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>ch.qos.logback</groupId>-->
+            <!--<artifactId>logback-core</artifactId>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.logback-extensions</groupId>
+            <artifactId>logback-ext-spring</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+        </dependency>
 
         <!--fastJson-->
         <dependency>
