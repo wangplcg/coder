@@ -12,7 +12,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  */
 
 @Configuration
-@ComponentScan("cn.com.spring.core.scope")
+@ComponentScan("cn.com.core.scope")
 @EnableAspectJAutoProxy
 public class ScopeConfig {
 }

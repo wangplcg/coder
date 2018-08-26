@@ -39,7 +39,7 @@ public class AwareService implements BeanNameAware, ResourceLoaderAware{
 
     public void outPutResult() {
         System.out.println("Bean 的名称为： " + beanName);
-        Resource resource = loader.getResource("classpath:cn/com/spring/core/el/test.txt");
+        Resource resource = loader.getResource("classpath:cn/com/core/el/test.txt");
         try {
             System.out.println("ResourceLoader 加载文件内容为：" + IOUtils.toString(resource.getInputStream()));
         } catch (IOException e) {

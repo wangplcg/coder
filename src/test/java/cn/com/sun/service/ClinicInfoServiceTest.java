@@ -3,7 +3,6 @@ package cn.com.sun.service;
 import cn.com.BaseJunit4Test;
 import cn.com.sun.commons.dto.ManagerPerson;
 import junit.framework.Assert;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,4 +30,13 @@ public class ClinicInfoServiceTest extends BaseJunit4Test{
         Assert.assertEquals(managerPerson.getIdNumber(), "610321199612131814");
         log.debug("测试{}", managerPerson);
     }
+
+    @Test
+    public void testLog() {
+        log.error("错误");
+        log.debug("测试");
+        log.debug("测试");
+        log.debug("测试");
+    }
+
 }

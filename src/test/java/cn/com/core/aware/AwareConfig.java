@@ -11,6 +11,6 @@ import org.springframework.context.annotation.Configuration;
  */
 
 @Configuration
-@ComponentScan("cn.com.spring.core.aware")
+@ComponentScan("cn.com.core.aware")
 public class AwareConfig {
 }

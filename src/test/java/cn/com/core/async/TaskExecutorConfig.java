@@ -17,7 +17,7 @@ import java.util.concurrent.Executor;
  * @create 2018-04-15 22:50
  */
 @Configuration
-@ComponentScan("cn.com.spring.core.async")
+@ComponentScan("cn.com.core.async")
 @EnableAsync
 public class TaskExecutorConfig implements AsyncConfigurer {
 

@@ -14,9 +14,7 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-
         ConfigurableEnvironment environment = context.getEnvironment();
 
         Map<String, Object> systemEnvironment = environment.getSystemEnvironment();
@@ -25,17 +23,12 @@ public class Main {
             System.out.println(a.getKey() + ":" + a.getValue());
         }
 
-
         context.getEnvironment().setActiveProfiles("dev");
         context.register(ProfileConfig.class);
         context.refresh();
 
-
-
         DemoBean demoBean = (DemoBean) context.getBean(DemoBean.class);
-
         System.out.println(demoBean.getContent());
-
         context.close();
     }
 }
