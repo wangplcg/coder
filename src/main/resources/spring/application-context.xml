@@ -39,5 +39,5 @@
     <aop:aspectj-autoproxy/>
     <tx:annotation-driven/>
 
-    <import resource="classpath*:spring/dataSource/**/*.xml"/>
+    <import resource="classpath*:spring/dataSource/*.xml"/>
 </beans>
