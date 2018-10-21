@@ -21,15 +21,13 @@ import org.springframework.stereotype.Component;
 public class SmsListener extends AbstractMqListener {
     @Override
     public boolean processData(Message message) {
-        byte[] body = message.getBody();
-        SmsDto dto = JSONObject.parseObject(body, SmsDto.class);
-        log.debug("接受处理消息 {}", dto);
+        SmsDto dto = JSONObject.parseObject(message.getBody(), SmsDto.class);
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             log.error("消息发送出现异常 ", e);
         }
-        log.debug("处理消息完成 {}", message.getBody());
+        log.debug("处理消息完成 {}", dto);
         return true;
     }
 }

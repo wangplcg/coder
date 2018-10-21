@@ -22,9 +22,11 @@ public class SmsTest extends BaseJunit4Test {
 
     @Test
     public void sendSms() {
-        SmsDto dto = new SmsDto();
-        dto.setContent("18829042473");
-        dto.setContent("您好, 您本月话费流量已经超标");
-        boolean b = smsProducer.sendSmsToPerson(dto);
+        for (int i = 0; i < 200; i++) {
+            SmsDto dto = new SmsDto();
+            dto.setContent("18829042473");
+            dto.setContent("您好, 您本月话费流量已经超标");
+            boolean b = smsProducer.sendSmsToPerson(dto);
+        }
     }
 }
