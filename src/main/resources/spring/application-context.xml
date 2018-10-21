@@ -23,6 +23,7 @@
             <list>
                 <value>classpath:properties/datasource.properties</value>
                 <value>classpath:properties/redis.properties</value>
+                <value>classpath:properties/rabbitmq-config.properties</value>
             </list>
         </property>
         <property name="fileEncoding">

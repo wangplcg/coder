@@ -38,10 +38,10 @@
           注册了相应的解析器
     -->
 
-    <bean name="/clinicService" class="org.springframework.remoting.caucho.HessianServiceExporter">
-        <property name="service" ref="clinicInfoService"/>
-        <property name="serviceInterface" value="cn.com.sun.service.IClinicInfoService"/>
-    </bean>
+    <!--<bean name="/clinicService" class="org.springframework.remoting.caucho.HessianServiceExporter">-->
+        <!--<property name="service" ref="clinicInfoService"/>-->
+        <!--<property name="serviceInterface" value="cn.com.sun.service.IClinicInfoService"/>-->
+    <!--</bean>-->
 
     <context:component-scan base-package="cn.com.sun" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
