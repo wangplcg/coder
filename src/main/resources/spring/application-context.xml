@@ -40,4 +40,6 @@
     <tx:annotation-driven/>
 
     <import resource="classpath*:spring/dataSource/*.xml"/>
+    <import resource="classpath*:spring/application-mq.xml"/>
+    <import resource="classpath*:spring/application-rediscache.xml"/>
 </beans>
