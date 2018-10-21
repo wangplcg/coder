@@ -22,10 +22,10 @@ public class SmsTest extends BaseJunit4Test {
 
     @Test
     public void sendSms() {
-        for (int i = 0; i < 200; i++) {
+        for (int i = 0; i < 20000; i++) {
             SmsDto dto = new SmsDto();
-            dto.setContent("18829042473");
-            dto.setContent("您好, 您本月话费流量已经超标");
+            dto.setPhoneNumber(i + "");
+            dto.setContent("当我遇到挫折时，是你的鼓励近在咫尺；当我得到帮助时，是你的关爱倍感雅致；当我向你诉苦时，是你的理解悉心微词；当我兴高采烈时，是你的微笑和我相伴。真正的友情能给心灵带来温馨，朋友，愿我们友谊长存！");
             boolean b = smsProducer.sendSmsToPerson(dto);
         }
     }
