@@ -10,7 +10,7 @@
     </context-param>
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath*:spring/application-context.xml</param-value>
+        <param-value>classpath*:spring/application-*.xml</param-value>
     </context-param>
 
     <!-- 加载Spring框架中的log4j监听器Log4jConfigListener -->
