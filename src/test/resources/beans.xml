@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+           ">
+    <bean id="teacher" class="cn.com.bean.Teacher">
+        <property name="name" value="wang"></property>
+    </bean>
+
+    <bean id="student" class="cn.com.bean.Student">
+        <property name="teacher" ref="teacher"></property>
+        <property name="name" value="wang"></property>
+    </bean>
+
+    <bean id="multiFunctionBean" class="cn.com.bean.MultiFunctionBean" init-method="initMethod" />
+
+    <bean id="logInterceptor" class="cn.com.bean.aop.StudentAop"></bean>
+    <aop:config>
+        <aop:pointcut expression="execution(public * cn.com.bean.Student.*(..))" id="servicePointcut"/>
+        <aop:aspect id="logAspect" ref="logInterceptor">
+            <aop:before method="print"  pointcut-ref="servicePointcut" />
+            <aop:after method="print"  pointcut-ref="servicePointcut" />
+        </aop:aspect>
+    </aop:config>
+
+
+    <!-- aop 测试 -->
+    <bean id="beforeAdvice" name="" class="cn.com.aop.BeforeAdvice" />
+    <bean id="target" class="cn.com.aop.Student" />
+    <bean id="throw" class="cn.com.aop.ThrowTest" />
+
+    <bean id="proxyTargetTest" class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:proxyInterfaces = "cn.com.aop.IStudent"
+          p:proxyTargetClass = "false"
+          p:target-ref = "target"
+          p:interceptorNames = "beforeAdvice,throw"/>
+</beans>

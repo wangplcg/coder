@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 @Slf4j
 public class ClinicInfoHessianTest {
+
     @Autowired
     @Qualifier("clinicServiceCaller")
     IClinicInfoService clinicInfoService;

@@ -6,13 +6,9 @@ import org.springframework.context.ResourceLoaderAware;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
-
 import java.io.IOException;
 
-
 /**
- * Aware
- *
  * BeanNameAware                  获取到容器中bean名称
  * ResourceLoaderAware            获取到当前 资源加载器 可以获取外部资源文件
  * BeanFactoryAware               获取当前bean factory，可以调用容器服务
@@ -24,8 +20,10 @@ import java.io.IOException;
  * @create 2018-04-15 22:22
  */
 @Service
-public class AwareService implements BeanNameAware, ResourceLoaderAware{
+public class AwareService implements BeanNameAware, ResourceLoaderAware {
+
     private String beanName;
+
     private ResourceLoader loader;
 
 

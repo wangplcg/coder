@@ -1,6 +1,7 @@
 package cn.com.core.aware;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * main
@@ -10,13 +11,17 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  */
 
 public class Main {
+    public static String getHost(String link) {
+        URL url;
+        String host = "";
+        try {
+            url = new URL(link);
+            host = url.getHost();
+        } catch (MalformedURLException e) {
+        }
+        return host;
+    }
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AwareConfig.class);
-
-        AwareService awareService = context.getBean(AwareService.class);
-
-        awareService.outPutResult();
-
-        context.close();
+            System.out.println(getHost("https://192.168.149.165:8888/article/ca41422fc76c4a1eae99ed9f.html"));
     }
 }

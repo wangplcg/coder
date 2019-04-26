@@ -1,9 +1,7 @@
 package cn.com.core.wisely;
 
-
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-
 import java.lang.annotation.*;
 
 @Target(ElementType.TYPE)

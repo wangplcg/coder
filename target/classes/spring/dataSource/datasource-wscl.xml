@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="wsclDataSource" name="dataSource_wscl" class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init" destroy-method="close">
+        <property name="url" value="${wscl.pool.url}" />
+        <property name="username" value="${wscl.pool.username}"/>
+        <property name="password" value="${wscl.pool.password}"/>
+        <property name="driverClassName" value="${wscl.pool.driver}"/>
+        <property name="filters" value="stat" />
+        <property name="initialSize" value="${wscl.pool.initialSize}"/>
+        <property name="minIdle" value="${wscl.pool.minIdle}" />
+        <property name="maxActive" value="${wscl.pool.maxActive}" />
+        <property name="maxWait" value="60000" />
+        <property name="timeBetweenEvictionRunsMillis" value="3000" />
+        <property name="minEvictableIdleTimeMillis" value="300000" />
+        <property name="validationQuery" value="SELECT 1 from dual" />
+        <property name="testWhileIdle" value="true" />
+        <property name="testOnBorrow" value="false" />
+        <property name="testOnReturn" value="false" />
+        <property name="poolPreparedStatements" value="true" />
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
+        <property name="removeAbandoned" value="true" />
+        <property name="removeAbandonedTimeout" value="1800" />
+        <property name="logAbandoned" value="true" />
+    </bean>
+
+    <!-- 事务管理
+        qualifier 后面时候事物使用 wsclTransactionManager @Transication(value="wsclTransactionManager")
+     -->
+    <bean id="wsclTransactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="wsclDataSource" />
+        <qualifier value="wsclTransactionManager"/>
+    </bean>
+
+    <bean id="wsclSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="wsclDataSource" />
+        <!-- 自动扫描mapping.xml文件 -->
+        <property name="mapperLocations">
+            <array>
+                <value>classpath*:mybatis/mapper/wscl/*.xml</value>
+            </array>
+        </property>
+        <property name="configLocation" value="classpath:mybatis/wscl_sqlMapConfig.xml"/>
+    </bean>
+
+    <!-- 接口所在包名，Spring会自动查找其下的类 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="cn.com.sun.mapper.wscl" />
+        <property name="sqlSessionFactoryBeanName" value="wsclSqlSessionFactory"/>
+    </bean>
+</beans>
