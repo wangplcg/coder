@@ -33,5 +33,9 @@
     </security:authentication-manager>
 
 
-
+    <security:http>
+        <security:form-login/>
+        <security:http-basic/>
+        <security:logout/>
+    </security:http>
 </beans>
