@@ -19,14 +19,19 @@
         http://www.springframework.org/schema/security
         http://www.springframework.org/schema/security/spring-security-3.1.xsd
     ">
-    <context:component-scan base-package="cn.com.sun">
-        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-    </context:component-scan>
+    <security:http auto-config="true">
+        <security:intercept-url pattern="/**" access="ROLE_USER"/>
+    </security:http>
 
-    <!-- 开启spring 注解注释-->
-    <cache:annotation-driven/>
-    <aop:aspectj-autoproxy/>
-    <tx:annotation-driven/>
+    <security:authentication-manager>
+        <security:authentication-provider>
+            <security:user-service>
+                <security:user name="user" password="user" authorities="ROLE_USER"/>
+                <security:user name="admin" password="admin" authorities="ROLE_USER, ROLE_ADMIN"/>
+            </security:user-service>
+        </security:authentication-provider>
+    </security:authentication-manager>
 
-    <import resource="application-security.xml"/>
+
+
 </beans>

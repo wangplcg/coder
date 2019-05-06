@@ -2,6 +2,8 @@ package cn.com.jdbc;
 
 import org.junit.Test;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.*;
 
 /**
@@ -21,8 +23,6 @@ public class SimpleJdbcTest {
         PreparedStatement preparedStatement = conn.prepareStatement(prepareSql, new String[]{"CATEGORY","TOWN"});
         preparedStatement.setString(1, "1");
         ResultSet resultSet = preparedStatement.executeQuery();
-
-
         ResultSetMetaData metaData = resultSet.getMetaData();
         System.out.println(metaData.getColumnCount());
         for (int i = 1; i <= metaData.getColumnCount(); i++) {
@@ -30,5 +30,13 @@ public class SimpleJdbcTest {
             System.out.println(metaData.getColumnName(i));
         }
         preparedStatement.close();
+    }
+
+    @Test
+    public void testDouble() {
+        BigDecimal bigDecimal = new BigDecimal("100");
+        bigDecimal = bigDecimal.setScale(2, RoundingMode.HALF_UP);
+        BigDecimal decimal = bigDecimal.divide(new BigDecimal("10000"), RoundingMode.HALF_UP);
+        System.out.println(decimal.toString());
     }
 }

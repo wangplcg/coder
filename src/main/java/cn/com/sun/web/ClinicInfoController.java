@@ -1,11 +1,8 @@
 package cn.com.sun.web;
 
-import cn.com.sun.commons.dto.ManagerPerson;
-import cn.com.sun.service.IClinicInfoService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import cn.com.sun.common.ManagerPersonDto;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 用户信息控制器
@@ -14,16 +11,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @create 2018-08-13 19:09
  */
 
-@Controller
-@RequestMapping("/clinic")
+@RestController
+@RequestMapping("/info")
 public class ClinicInfoController {
 
-    @Autowired
-    IClinicInfoService clinicInfoService;
-
-    @RequestMapping(value = "/getManagerPerson")
-    @ResponseBody
-    public ManagerPerson getManagerPerson(String id) {
-        return clinicInfoService.queryInfoById(id);
+    @RequestMapping(value = "/getUserInfo")
+    public ManagerPersonDto getManagerPerson() {
+        ManagerPersonDto managerPersonDto = new ManagerPersonDto();
+        managerPersonDto.setAge("10");
+        managerPersonDto.setName("wang");
+        managerPersonDto.setSex("男");
+        return managerPersonDto;
     }
 }

@@ -1,7 +1,6 @@
 package cn.com.test.hessian;
 
 import cn.com.sun.commons.dto.ManagerPerson;
-import cn.com.sun.service.IClinicInfoService;
 import com.caucho.hessian.client.HessianProxyFactory;
 import junit.framework.Assert;
 import lombok.extern.slf4j.Slf4j;
