@@ -1,6 +1,7 @@
 package cn.com.springTest;
 
 import cn.com.bean.Student;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -51,4 +52,15 @@ public class ListableTest {
             System.out.println(str);
         }
     }
+
+    @Test
+    public void strinTest() {
+        String a = StringUtils.replaceChars("{}哈哈[中括号 ]〔 大括   号〕()（甘）国税 哈哈哈哈 ", "{}[]〔〕()（）【】 ", "?????????????");
+        System.out.println(a);
+
+        String replace = StringUtils.replace("别克车/我的车", "/", " ");
+        System.out.println(replace);
+    }
+
+
 }
