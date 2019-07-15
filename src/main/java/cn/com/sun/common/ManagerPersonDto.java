@@ -3,6 +3,7 @@ package cn.com.sun.common;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.function.Function;
 
 /**
  * Created with IntelliJ IDEA.
