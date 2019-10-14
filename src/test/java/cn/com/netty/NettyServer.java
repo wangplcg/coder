@@ -31,7 +31,6 @@ public class NettyServer {
                             }
                         });
                     }
-                })
-                .bind(8000);
+                }).bind(8000);
     }
 }

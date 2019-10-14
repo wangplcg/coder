@@ -237,6 +237,11 @@
 
 
     <dependencies>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+            <version>1.1.2-beta4</version>
+        </dependency>
         <!-- spring begin -->
         <dependency>
             <groupId>commons-io</groupId>
@@ -370,12 +375,6 @@
             <artifactId>thumbnailator</artifactId>
             <version>0.4.8</version>
         </dependency>
-        <dependency>
-            <groupId>cn.com.servyou.dzswj</groupId>
-            <artifactId>sssq-svc-api</artifactId>
-            <version>2.1.0041-SNAPSHOT</version>
-        </dependency>
-
         <!--Log-->
         <dependency>
             <groupId>org.slf4j</groupId>

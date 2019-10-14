@@ -29,7 +29,7 @@ public class DistributedRedisLock {
         String key = LOCK_TITLE + lockName;
        //获取所对象
         RLock mylock = redisson.getLock(key);
-      //释放锁（解锁）
+        //释放锁（解锁）
         mylock.unlock();
         System.err.println("======unlock======"+Thread.currentThread().getName());
     }
