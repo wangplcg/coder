@@ -5,7 +5,9 @@ import org.junit.Test;
 import java.util.Arrays;
 
 /**
- * Description:
+ * Description: 归并排序
+ * 空间复杂度 O(n) 数组
+ * 时间复杂度 O(nlogn)
  * User: wangpl
  * Date: 2019-07-01
  * Time: 16:35
@@ -17,9 +19,9 @@ public class MergeSortCount {
 
     public void mergeSortCount(int[] a, int q, int r) {
         if (q >= r) return;
-        mergeSortCount(a, q, (q + r)/ 2);
-        mergeSortCount(a,(q + r)/ 2 + 1, r);
-        merge(a, q, (q + r)/ 2, r);
+        mergeSortCount(a, q, (q + r) / 2);
+        mergeSortCount(a,(q + r) / 2 + 1, r);
+        merge(a, q, (q + r) / 2, r);
     }
 
 

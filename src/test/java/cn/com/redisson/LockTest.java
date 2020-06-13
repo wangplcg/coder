@@ -8,7 +8,6 @@ package cn.com.redisson;
  */
 
 public class LockTest {
-
     public static void main(String[] args) throws InterruptedException {
         DistributedRedisLock.acquire("123123");
         //执行具体业务逻辑

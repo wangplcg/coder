@@ -1,5 +1,6 @@
 package cn.com.netty;
 
+import cn.com.netty.echo.ServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInitializer;
@@ -18,13 +19,16 @@ public class NettyServer {
 
         NioEventLoopGroup boss = new NioEventLoopGroup();
         NioEventLoopGroup worker = new NioEventLoopGroup();
+        NioEventLoopGroup businessgroup = new NioEventLoopGroup();
+
         serverBootstrap
                 .group(boss, worker)
                 .channel(NioServerSocketChannel.class)
+                .handler(new ServerHandler())
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     protected void initChannel(NioSocketChannel ch) {
                         ch.pipeline().addLast(new StringDecoder());
-                        ch.pipeline().addLast(new SimpleChannelInboundHandler<String>() {
+                        ch.pipeline().addLast(businessgroup, new SimpleChannelInboundHandler<String>() {
                             @Override
                             protected void channelRead0(ChannelHandlerContext ctx, String msg) {
                                 System.out.println(msg);

@@ -41,11 +41,11 @@ public class Queens {
         int leftup = column - 1,  rightup = column + 1;
         for (int i = row - 1; i >= 0; i--) {
 
-//            结果在同一列中 校验不通过 返回false
+            // 结果在同一列中 校验不通过 返回false
             if (result[i] == column) {
                 return false;
             }
-//             对角线校验
+            // 对角线校验
             if (leftup >= 0 ) {
                 if (result[i] == leftup) {
                     return false;

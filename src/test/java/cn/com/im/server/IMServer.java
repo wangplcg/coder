@@ -9,7 +9,10 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.timeout.IdleStateHandler;
 import io.netty.util.AttributeKey;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Description:
@@ -40,8 +43,9 @@ public class IMServer {
                         // ch.pipeline().addLast(new FirstServerHandler());
                         // ch.pipeline().addLast(new SimpleChannelInboundHandler<String>() {
                         //     @Override
-                        //     protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
+                        //     protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Decrpy {
                         //         System.out.println(msg);
+                        ch.pipeline().addLast(new IdleStateHandler(5, 0 ,0, TimeUnit.SECONDS));
                         ch.pipeline().addLast(new Spliter());
                         ch.pipeline().addLast(new PacketDecode());
                         ch.pipeline().addLast(new LoginRequestHandler());
