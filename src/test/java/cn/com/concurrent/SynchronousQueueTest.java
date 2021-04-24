@@ -2,6 +2,7 @@ package cn.com.concurrent;
 
 import org.junit.Test;
 
+import java.util.Queue;
 import java.util.concurrent.*;
 
 /**

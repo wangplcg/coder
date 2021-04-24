@@ -1,7 +1,14 @@
 package cn.com;
 
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
+import com.jayway.jsonpath.Configuration;
+import com.jayway.jsonpath.JsonPath;
+import com.jayway.jsonpath.Option;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
@@ -14,16 +21,19 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.apache.lucene.util.RamUsageEstimator;
+import org.apache.poi.ss.formula.functions.Count;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLDecoder;
-import java.security.SecureRandom;
+import java.math.BigDecimal;
+import java.net.URLEncoder;
 import java.text.ParseException;
+import java.time.*;
 import java.util.*;
+import java.util.concurrent.CountDownLatch;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -141,36 +151,6 @@ public class StringTextTest {
         System.out.println(new Date().compareTo(DateUtils.parseDate("2020-01-01", "yyyy-MM-dd")));
     }
 
-
-    @Test
-    public void testRandom() {
-        System.out.println(new Random().nextInt() + "");
-        System.out.println(new SecureRandom().nextInt() + "");
-    }
-
-    @Test
-    public void test11() throws UnsupportedEncodingException, MalformedURLException {
-        String service = "https://etax.shenzhen.chinatax.gov.cn/login-web/oauth2/auth?response_type=code&state&client_id=app_wxyyClient";
-        String redirectAllowDomains = "etax.shenzhen.chinatax.gov.cn";
-        // 跳转地址白名单配置，added by zjxin 2019.09.25
-        if (StringUtils.isNotBlank(redirectAllowDomains) && StringUtils.isNotBlank(service)){
-            List<String> allowDomainList = Arrays.asList(redirectAllowDomains.split(","));
-            String serviceTemp = URLDecoder.decode(service, "UTF-8");
-            URL urlTemp = new URL(serviceTemp);
-            if (!allowDomainList.contains(urlTemp.getHost())){
-                service = null;
-            }
-        }
-        System.out.println(service);
-    }
-
-    @Test
-    public void test111() {
-        Pattern compile = Pattern.compile("^https?://");
-        Matcher matcher = compile.matcher("https://etax.shenzhen.chinatax.gov.cn/login-web/oauth2/auth?response_type=code&state&client_id=a");
-        System.out.println(matcher.find());
-    }
-
     private String addParamToUrl(String url, String paramName, String value) {
         if (url.indexOf("?") < 0) {
             return url += ("?" + paramName + "=" + value);
@@ -195,7 +175,7 @@ public class StringTextTest {
         // 获得Http客户端(可以理解为:你得先有一个浏览器;注意:实际上HttpClient与浏览器是不一样的)
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
         // 创建Get请求
-        HttpGet httpGet = new HttpGet("https://etax.shenzhen.chinatax.gov.cn/login-web/oauth2/token?client_id=szdzswjzrrsm&client_secret=smdzswjzrr%232020&grant_type=authorization_code&code=ebe432f35c4f492d886d2427f6c17ad0&response_type=code&redirect_uri=https://www.baidu.com");
+        HttpGet httpGet = new HttpGet();
         // 响应模型
         CloseableHttpResponse response = null;
         try {
@@ -253,4 +233,196 @@ public class StringTextTest {
         System.out.println(--i);
         System.out.println(i);
     }
+
+    public static String handle(String url) {
+        if (StringUtils.isNotBlank(url)) {
+            Pattern compile = Pattern.compile("^https?://");
+            Matcher matcher = compile.matcher(url);
+            if (matcher.find()) {
+                return url;
+            }
+            return "hwww.hao123.com" + url;
+        }
+        return "";
+    }
+
+    @Test
+    public void testPattern() {
+        Pattern compile = Pattern.compile("^(?!temp)[\\w\\d]*/\\d{4}-\\d{2}-\\d{2}");
+        Matcher matcher = compile.matcher("41413102010000000215/2020-08-11");
+        if (matcher.find()) {
+            System.out.println("find");
+        }
+    }
+
+    @Test
+    public void testGrade() {
+        java.util.regex.Pattern compile = java.util.regex.Pattern.compile("^([七八九]).*([上下])$");
+        Matcher matcher = compile.matcher("九上");
+        if (!matcher.matches()) {
+            return;
+        }
+        String age = StringUtils.equals(matcher.group(1), "七") ? "7" : StringUtils.equals(matcher.group(1), "八") ? "8" : "9";
+        String halfYear = StringUtils.equals(matcher.group(2), "上") ? "up" : "down";
+        System.out.println(age + "_" + halfYear);
+    }
+
+    @Test
+    public void testPatterns() {
+        System.out.println("SELECT t.id, t.chapter_id, t.question_id, t.create_time, t.pt_id, t.type, t.publish_status, t.pt_order_num, t.question_order_num, t.question_tag,\tt.modify_time, t.create_user, t.modify_user, t.question_tag_desc \n" +
+                "FROM\n" +
+                "\ttower_official_chapter_pt_question t, tower_chapter c \n" +
+                "WHERE\tt.chapter_id = c.chapter_id AND c.books_id = #{bookId} AND t.pt_id = #{ptId} AND t.type = 6 ORDER BY t.question_order_num desc");
+
+        String[] split = "我的;".split("[;；]");
+        System.out.println(JSONObject.toJSON(split));
+    }
+
+    @Test
+    public void testUrlEncode() {
+        String encode = URLEncoder.encode("organ_course_bo_organ_books_chapter_P_1606704189050");
+        System.out.println(encode);
+
+    }
+
+    @Test
+    public void testJSONArray() {
+        List<String> aNull = JSONArray.parseArray(null, String.class);
+        System.out.println(aNull);
+    }
+
+    @Test
+    public void testDate() {
+        long l = System.currentTimeMillis();
+        long millis = DateTime.now(DateTimeZone.forOffsetHours(8)).getMillis();
+        System.out.println(millis + "    " + l);
+        System.out.println(DateTime.now().getMillis());
+
+        //
+        // Date date = new Date();
+        // LocalDate localDate = date.toInstant().atZone(ZoneId.of("+8")).toLocalDate();
+        // LocalTime localTime = LocalTime.of(0, 0, 0, 0);
+        // LocalDateTime datetime = LocalDateTime.of(localDate, localTime);
+        // long l = datetime.toInstant(ZoneOffset.of("+8")).toEpochMilli();
+        // System.out.println(l);
+    }
+
+    @Test
+    public void testSets() {
+        List<String> lists = Lists.newArrayList("123aa", "214fdsf", "325hdhdt");
+        Set<String> hashSet = Sets.newHashSet(lists);
+        ArrayList<String> strings = Lists.newArrayList(lists);
+        System.out.println(strings);
+        //
+        // Date date = new Date();
+        // LocalDate localDate = date.toInstant().atZone(ZoneId.of("+8")).toLocalDate();
+        // LocalTime localTime = LocalTime.of(0, 0, 0, 0);
+        // LocalDateTime datetime = LocalDateTime.of(localDate, localTime);
+        // long l = datetime.toInstant(ZoneOffset.of("+8")).toEpochMilli();
+        // System.out.println(l);
+    }
+
+    @Test
+    public void dateTest() {
+
+        DateTime now = DateTime.now(DateTimeZone.forOffsetHours(8)).withMillisOfDay(0);
+
+        long startMillis = now.withDayOfWeek(1).getMillis();
+        long endMillis = now.withDayOfWeek(7).plusDays(1).getMillis();
+
+        long startOneMillis = now.withDayOfWeek(1).minusWeeks(1).getMillis();
+        long endOneMillis = now.withDayOfWeek(7).plusDays(1).minusWeeks(1).getMillis();
+
+        long startTwoMillis = now.withDayOfWeek(1).minusWeeks(2).getMillis();
+        long endTwoMillis = now.withDayOfWeek(7).plusDays(1).minusWeeks(2).getMillis();
+
+        long startThreeMillis = now.withDayOfWeek(1).minusWeeks(3).getMillis();
+        long endThreeMillis = now.withDayOfWeek(7).plusDays(1).minusWeeks(3).getMillis();
+
+        long startFourMillis = now.withDayOfWeek(1).minusWeeks(4).getMillis();
+        long endFourMillis = now.withDayOfWeek(7).plusDays(1).minusWeeks(3).getMillis();
+
+        System.out.println(startMillis);
+        System.out.println(endMillis);
+        System.out.println(startOneMillis);
+        System.out.println(endOneMillis);
+        System.out.println(startTwoMillis);
+        System.out.println(endTwoMillis);
+        System.out.println(startThreeMillis);
+        System.out.println(endThreeMillis);
+        System.out.println(startFourMillis);
+        System.out.println(endFourMillis);
+    }
+
+    private static Configuration conf = Configuration.defaultConfiguration();
+    static {
+        // path 不存在返回null
+        conf.setOptions(Option.DEFAULT_PATH_LEAF_TO_NULL);
+        conf.setOptions(Option.ALWAYS_RETURN_LIST);
+    }
+
+    public static void main(String[] args) {
+        List<String> args1 = new ArrayList<String>();
+        String videoDuration = "";
+        args1.add("ffprobe");
+        args1.add("-i");
+        args1.add("http://jzx-video.oss-cn-hangzhou.aliyuncs.com/ss/012d0795bae64e7add45848ee86c4132.mp4");
+        args1.add("-show_entries");
+        args1.add("format=duration");
+        args1.add("-v");
+        args1.add("quiet");
+        args1.add("-of");
+        args1.add("csv=\"p=0\"");
+        args1.add("-sexagesimal");
+        String argsString = String.join(" ", args1);
+        try {
+            Process process1 = Runtime.getRuntime().exec(argsString);
+            process1.waitFor();
+            // FIXME: Add a logger increment to get the progress to 100%.
+            int exitCode = process1.exitValue();
+            if (exitCode != 0)
+            {
+                throw new RuntimeException("FFmpeg exec failed - exit code:" + exitCode);
+            }
+            else
+            {
+                videoDuration = process1.getOutputStream().toString();
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            new RuntimeException("Unable to start FFmpeg executable.");
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
+            new RuntimeException("FFmpeg run interrupted.");
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        System.out.println(videoDuration);
+
+
+        // String url="http://jzx-video.oss-cn-hangzhou.aliyuncs.com/ss/012d0795bae64e7add45848ee86c4132.mp4";
+        // long duration = 0L;
+        // FFmpegFrameGrabber ff = new FFmpegFrameGrabber(url);
+        // try {
+        //     ff.start();
+        //     duration = ff.getLengthInTime() / (1000 * 1000);
+        //     ff.stop();
+        // } catch (FrameGrabber.Exception e) {
+        //     e.printStackTrace();
+        // }
+        // System.out.println(duration);
+    }
+
+    private static int getHash(String key) {
+        int h;
+        return (key == null) ? 0 : ((h = key.hashCode()) ^ (h >>> 16)) & 0x000001FF;
+    }
+
+
 }
