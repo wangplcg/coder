@@ -130,11 +130,11 @@
             </dependency>
 
             <!--Spring cache-->
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-cache</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.springframework</groupId>-->
+<!--                <artifactId>spring-cache</artifactId>-->
+<!--                <version>${spring.version}</version>-->
+<!--            </dependency>-->
 
             <!--test-->
             <dependency>
@@ -149,7 +149,7 @@
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>${junit-version}</version>
+                <version>4.12</version>
                 <scope>test</scope>
             </dependency>
 
@@ -179,16 +179,16 @@
                 <artifactId>logback-classic</artifactId>
                 <version>${logbac.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.logback-extensions</groupId>
-                <artifactId>logback-ext-spring</artifactId>
-                <version>0.1.5</version>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>jcl-over-slf4j</artifactId>
-                <version>1.7.9</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.logback-extensions</groupId>-->
+<!--                <artifactId>logback-ext-spring</artifactId>-->
+<!--                <version>0.1.5</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.slf4j</groupId>-->
+<!--                <artifactId>jcl-over-slf4j</artifactId>-->
+<!--                <version>1.7.9</version>-->
+<!--            </dependency>-->
             <!--fastJson-->
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -618,6 +618,27 @@
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
             <version>2.3.0</version>
+        </dependency>
+
+        <!-- kafka       -->
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+            <version>3.3.4</version>
+        </dependency>
+
+        <!--junit-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <!--   spring-cloud-starter-bus-kafka     -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bus-kafka</artifactId>
+            <version>1.3.2.RELEASE</version>
         </dependency>
     </dependencies>
 

@@ -33,7 +33,7 @@ import java.net.URLEncoder;
 import java.text.ParseException;
 import java.time.*;
 import java.util.*;
-import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -424,5 +424,34 @@ public class StringTextTest {
         return (key == null) ? 0 : ((h = key.hashCode()) ^ (h >>> 16)) & 0x000001FF;
     }
 
+    volatile int k = 0;
 
+    @Test
+    public void thread() throws InterruptedException {
+        Thread t1 = new Thread(() -> {
+            sum();
+        });
+        Thread t2 = new Thread(() -> {
+            sum();
+        });
+
+        t1.start();
+        t2.start();
+
+        t1.join();
+        t2.join();
+        System.out.println(k);
+
+        new ThreadPoolExecutor(0, Integer.MAX_VALUE,
+                60L, TimeUnit.SECONDS,
+                new SynchronousQueue<Runnable>());
+
+
+    }
+
+    public void sum() {
+        for (int i = 0; i < 9999; i++) {
+            k = k + 1;
+        }
+    }
 }

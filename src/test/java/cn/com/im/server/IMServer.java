@@ -58,7 +58,6 @@ public class IMServer {
                         // });
                     }
                 });
-
         bind(serverBootstrap, PORT);
     }
 
